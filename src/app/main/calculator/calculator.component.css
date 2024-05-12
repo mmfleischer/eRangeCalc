@@ -1,0 +1,71 @@
+
+.wrapper{
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.range-label{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.image-card{
+    margin: 0px 20px;
+    height: fit-content;
+    max-width: 800px;
+}
+
+.temperature-label {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+}
+
+mat-slider {
+    width: 100%;
+    margin: 0;
+  }
+
+.mat-mdc-form-field{
+    display: flex;
+}
+
+.mat-mdc-card{
+    height: fit-content;
+}
+
+.mg-10-top-bottom {
+    margin: 10px 0px;
+}
+
+.mg-20-left-right {
+    margin: 0px 20px;
+}
+
+@media only screen and (max-width: 968px) {
+    .row{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-card{
+        margin: 20px 0px;
+        height: 100%;        
+    }
+
+    .mat-mdc-card{
+        width: fit-content;
+    }
+
+  }

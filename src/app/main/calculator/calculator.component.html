@@ -1,0 +1,91 @@
+<div class="row">
+    <mat-card>
+        <mat-card-content>
+        <form [formGroup]="calculatorForm" (change)="onChange()">
+
+                <h3>aktuelle Akku-Kapazität:</h3>
+                <mat-form-field appearance="outline">
+                    <mat-label>Akku-Kapazität</mat-label>
+                    <input matInput id="capacity" type="number" min="1" formControlName="capacity">
+                    <span matTextSuffix>kWh</span>
+                    @if (calculatorForm.controls['capacity'].errors?.['required']){
+                        <mat-error>Bitte eine Zahl eingeben.</mat-error>
+                    }
+                    @if (calculatorForm.controls['capacity'].errors?.['min']){
+                        <mat-error>Wert muss über 0 liegen.</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-divider class="mg-10-top-bottom"></mat-divider>
+
+                <h3>⌀ Verbrauch auf 100km:</h3>
+                <mat-form-field appearance="outline">
+                    <mat-label>Verbrauch</mat-label>
+                    <input matInput id="consumption" type="number" min="1" formControlName="consumption">
+                    <span matTextSuffix>kWh</span>
+                    @if (calculatorForm.controls['consumption'].errors?.['required']){
+                        <mat-error>Bitte eine Zahl eingeben.</mat-error>
+                    }
+                    @if (calculatorForm.controls['consumption'].errors?.['min']){
+                        <mat-error>Wert muss über 0 liegen.</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-divider class="mg-10-top-bottom"></mat-divider>
+
+                <div class="wrapper">
+                    <div class="column">
+                        <label>Fahrstil:</label>
+                        <mat-radio-group class="column" formControlName="drivingStyle" aria-label="fahrstil wählen" (change)="onChange()">
+                            <mat-radio-button value="eco">ökonomisch</mat-radio-button>
+                            <mat-radio-button value="normal">normal</mat-radio-button>
+                            <mat-radio-button value="sport">sportlich</mat-radio-button>
+                        </mat-radio-group> 
+                    </div>   
+                            
+                    <mat-divider class="mg-20-left-right" [vertical]="true"></mat-divider>
+
+                    <div class="column">
+                        <label>Wetterbedingungen:</label>
+                        <mat-radio-group class="column" formControlName="weatherCondition" aria-label="aktuelle wetterbedingungen auswählen" (change)="onChange()">
+                            <mat-radio-button value="rain">regnerisch</mat-radio-button>
+                            <mat-radio-button value="sun">sonnig</mat-radio-button>
+                            <mat-radio-button value="snow">verschneit</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div> 
+
+                <mat-divider class="mg-10-top-bottom"></mat-divider>
+                
+                <h3>Außentemperatur:</h3>
+                <label class="temperature-label">{{slider.value}}°C</label>
+                <mat-slider min="-20" max="40" step="5">
+                    <input matSliderThumb value="10" #slider formControlName="temperature" (input)="onChange()">
+                </mat-slider>              
+                
+                <mat-divider class="mg-10-top-bottom"></mat-divider>
+
+                <span class="range-label">Errechnete Reichweite: {{ result }}</span>
+
+        </form>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="image-card">
+        <mat-card-content>
+            <h3>Zusatzaufgabe 2.1</h3>
+            <p>Am Beispiel (s. Rechner) gegebene Nutzerdaten könnten wie folgt in einer Datenbank gespeichert werden:</p>
+            <img src="../../../assets/images/dbModel.jpg">
+            <h3>Zusatzaufgabe 2.2</h3>
+            <p>Die Lernfähigkeit ohne Feedback würde ich wahrscheinlich hauptsächlich am Verlauf des angegebenen Verbrauchs des Nutzers umsetzen, 
+                da es vor allem an Feedback zur Genauigkeit der letzten Berechnung(en) fehlt. <br/>
+                - Nutzer gibt bei Verbrauch Daten vom Fahrzeug an (z.B. gemessen an der letzten Fahrt?) => Bildung von Durchschnitt-/Erwartungswerten welche als zusätzlicher Faktor in die Berechnung eingebunden werden<br/>
+                - Sammeln von zusätzlichen Daten zum Fahrzeug (z.B Erweiterung des Rechners & der Datenbank(extra Tabelle Fahrzeug) um Fahrzeugtyp/Bereifung/Alter/Akkuzustand/etc.) => Daten von Fahrzeugen des gleichen Typs (anderer Benutzer) können als Vergleichwerte einbezogen werden
+            </p>
+            <h3>Zusatzaufgabe 2.3</h3>
+            <p>Je nachdem wie umfangreich das Feedback gestaltet werden kann,
+                z.B. Prognose zu kurz/zu weit, wieviel, Änderungen der Wetterbedingungen/Temperatur, etc., können z.B. Aussagen zum Fahrverhalten des Nutzers(Fahrstil)/des Fahrzeuges(Wetterbedinugnen/Temperatur/etc.) 
+                getroffen werden und damit die Berechnungsfaktoren präziser auf Nutzer(z.B. persönliche Nutzer-Fahrstil-Faktoren aufgrund der Durchschnittsabweichungen vom Basisfaktor) 
+                und Fahrzeug abgestimmt werden.</p>
+        </mat-card-content>
+    </mat-card>
+</div>

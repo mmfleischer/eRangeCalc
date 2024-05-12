@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --bg-color: #f3f3f3;
+    --border-color: rgb(230, 230, 230);
+}
+
+html, body, h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+
+html, body, app-root {
+    height: 100%;
+}
+
+app-root {
+    display: flex;
+    flex-direction: column;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main{
+    background-color: var(--bg-color);
+}
+
+.justify-center{
+    justify-content: center;
+    align-content: center;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
